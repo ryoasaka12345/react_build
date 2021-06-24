@@ -5,6 +5,7 @@ import Welcome from "./pages/Welcome";
 import Products from "./pages/Products";
 import MainHeader from "./components/MainHeader";
 import ProductDetail from "./pages/ProductDetail";
+import NewProduct from "./pages/NewProduct";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       <main>
         <Switch>
           <Route path="/" exact>
-            <Redirect to="/welcome"/>
+            <Redirect to="/welcome" />
           </Route>
           <Route path="/welcome" exact>
             <Welcome />
@@ -23,6 +24,9 @@ function App() {
           </    Route>
           <Route path='/product-detail/:productId' exact>
             <ProductDetail />
+          </Route>
+          <Route path='/product/add' exact>
+            <NewProduct />
           </Route>
         </Switch>
       </main>

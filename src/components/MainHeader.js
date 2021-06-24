@@ -16,6 +16,11 @@ const MainHeader = () => {
                             Products
                         </NavLink>
                     </li>
+                    <li>
+                        <NavLink activeClassName={classes.active} to='/product/add'>
+                            NewProduct
+                        </NavLink>
+                    </li>
                 </ul>
             </nav>
         </header>
