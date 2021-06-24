@@ -1,20 +1,24 @@
 import React from "react";
 
-import { Route, Link } from "react-router-dom";
+import { Route, useParams } from "react-router-dom";
 import Welcome from "./pages/Welcome";
 import Products from "./pages/Products";
 import MainHeader from "./components/MainHeader";
+import ProductDetail from "./pages/ProductDetail";
 
 function App() {
   return (
     <div>
-      <MainHeader/>
+      <MainHeader />
       <main>
-        <Route path="/Welcome">
+        <Route path="/welcome">
           <Welcome />
         </Route>
-        <Route path="/Products">
+        <Route path="/products">
           <Products />
+        </    Route>
+        <Route path='/product-detail/:productId'>
+          <ProductDetail />
         </Route>
       </main>
     </div>
