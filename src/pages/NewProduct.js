@@ -10,16 +10,35 @@ function NewProduct() {
     const productPrice = useRef(null);
     const productDesc = useRef(null);
 
+    const history = useHistory(null);
+    const newProductAPI = 'https://60caadb921337e0017e42cf9.mockapi.io/products';
+
     const submitFormHandler = (e) => {
+        console.log("submitHandler");
         e.preventDefault();
 
+        setIsLoading(true);
         const product = {
             name: productName.current.value,
             price: productPrice.current.value,
             description: productDesc.current.value,
         };
 
-        console.log(product);
+        fetch(newProductAPI, {
+            method: 'POST',
+            body: JSON.stringify(product),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then((response) => {
+                return response.json;
+            })
+            .then((data) => {
+                setIsLoading(false);
+                // Back to products list page
+                history.push('/products')
+            });
     };
 
     return (
@@ -29,18 +48,18 @@ function NewProduct() {
             <form onSubmit={submitFormHandler}>
                 <p>
                     <label>Name </label>
-                    <input type="text" ref={productName}/>
+                    <input type="text" ref={productName} />
                 </p>
                 <p>
                     <label>Price </label>
-                    <input type="number" ref={productPrice}/>
+                    <input type="number" ref={productPrice} />
                 </p>
                 <p>
                     <label>Description </label>
                     <textarea type="text" ref={productDesc} cols="50" rows="4"></textarea>
                 </p>
+                <p><button>Add Product</button></p>
             </form>
-            <p><button>Add Product</button></p>
         </div>
     );
 }
